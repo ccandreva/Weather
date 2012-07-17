@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<dwml version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd">
+  <head>
+    <product concise-name="dwmlByDay" operational-mode="developmental" srsName="WGS 1984">
+      <creation-date refresh-frequency='PT1H'>2012-07-14T18:28:08-04:00</creation-date>
+     <category>current observations and forecast</category>
+    </product>
+    <source>
+      <production-center>New York, NY</production-center>
+      <credit>http://www.erh.noaa.gov/okx/</credit>
+      <more-information>http://www.nws.noaa.gov/forecasts/xml/</more-information>
+    </source>
+  </head>
+  <data type="forecast">
+
+  <location>
+    <location-key>point1</location-key>
+    <description>White Plains, NY</description>
+    <point latitude="41.02" longitude="-73.75"/>
+    <city state="NY">White Plains</city>
+    <height datum="mean sea level">262</height>
+  </location>
+<moreWeatherInformation applicable-location="point1">http://forecast.weather.gov/MapClick.php?lat=41.02&amp;lon=-73.75</moreWeatherInformation>
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p6h-n1-1</layout-key>
+      <start-valid-time>2012-07-14T23:00:00-04:00</start-valid-time>
+      <end-valid-time>2012-07-21T18:00:00-04:00</end-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p12h-n14-1</layout-key>
+      <start-valid-time period-name="Overnight">2012-07-15T00:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Sunday">2012-07-15T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Sunday Night">2012-07-15T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Monday">2012-07-16T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Monday Night">2012-07-16T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Tuesday">2012-07-17T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Tuesday Night">2012-07-17T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Wednesday">2012-07-18T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Wednesday Night">2012-07-18T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Thursday">2012-07-19T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Thursday Night">2012-07-19T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Friday">2012-07-20T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Friday Night">2012-07-20T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Saturday">2012-07-21T06:00:00-04:00</start-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p24h-n7-1</layout-key>
+      <start-valid-time period-name="Overnight">2012-07-15T00:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Sunday Night">2012-07-15T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Monday Night">2012-07-16T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Tuesday Night">2012-07-17T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Wednesday Night">2012-07-18T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Thursday Night">2012-07-19T18:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Friday Night">2012-07-20T18:00:00-04:00</start-valid-time>
+  </time-layout>
+
+  <time-layout time-coordinate="local" summarization="12hourly">
+    <layout-key>k-p24h-n7-2</layout-key>
+      <start-valid-time period-name="Sunday">2012-07-15T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Monday">2012-07-16T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Tuesday">2012-07-17T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Wednesday">2012-07-18T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Thursday">2012-07-19T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Friday">2012-07-20T06:00:00-04:00</start-valid-time>
+      <start-valid-time period-name="Saturday">2012-07-21T06:00:00-04:00</start-valid-time>
+  </time-layout>
+
+
+  <parameters applicable-location="point1">
+
+    <temperature type="minimum" units="Fahrenheit" time-layout="k-p24h-n7-1">
+      <name>Daily Minimum Temperature</name>
+        <value>72</value>
+        <value>71</value>
+        <value>71</value>
+        <value>75</value>
+        <value>72</value>
+        <value>66</value>
+        <value>64</value>
+    </temperature>
+
+    <temperature type="maximum" units="Fahrenheit" time-layout="k-p24h-n7-2">
+      <name>Daily Maximum Temperature</name>
+        <value>87</value>
+        <value>92</value>
+        <value>96</value>
+        <value>94</value>
+        <value>87</value>
+        <value>85</value>
+        <value>86</value>
+    </temperature>
+
+    <probability-of-precipitation  type="12 hour" units="percent" time-layout="k-p12h-n14-1">
+      <name>12 Hourly Probability of Precipitation</name>
+        <value>30</value>
+        <value>60</value>
+        <value>60</value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value>30</value>
+        <value>30</value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+        <value xsi:nil="true"></value>
+    </probability-of-precipitation>
+
+    <weather time-layout="k-p12h-n14-1">
+      <name>Weather Type, Coverage, Intensity</name>
+        <weather-conditions weather-summary="Chance Showers"/>
+        <weather-conditions weather-summary="Heavy Rain"/>
+        <weather-conditions weather-summary="Heavy Rain"/>
+        <weather-conditions weather-summary="Mostly Sunny"/>
+        <weather-conditions weather-summary="Partly Cloudy"/>
+        <weather-conditions weather-summary="Mostly Sunny"/>
+        <weather-conditions weather-summary="Partly Cloudy"/>
+        <weather-conditions weather-summary="Chance Thunderstorms"/>
+        <weather-conditions weather-summary="Chance Thunderstorms"/>
+        <weather-conditions weather-summary="Mostly Sunny"/>
+        <weather-conditions weather-summary="Mostly Clear"/>
+        <weather-conditions weather-summary="Sunny"/>
+        <weather-conditions weather-summary="Mostly Clear"/>
+        <weather-conditions weather-summary="Mostly Sunny"/>
+    </weather>
+
+    <conditions-icon type="forecast-NWS" time-layout="k-p12h-n14-1">
+      <name>Conditions Icon</name>        <icon-link>http://forecast.weather.gov/images/wtf/medium/nshra30.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/shra60.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nshra60.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/sct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nsct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/sct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nsct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/hi_tsra30.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nscttsra30.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/sct.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nfew.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/few.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/nfew.png</icon-link>
+        <icon-link>http://forecast.weather.gov/images/wtf/medium/sct.png</icon-link>
+    </conditions-icon>
+
+    <hazards time-layout="k-p6h-n1-1">
+      <name>Watches, Warnings, and Advisories</name>
+      <hazard-conditions>
+        <hazard headline="Hazardous Weather Outlook">
+          <hazardTextURL>http://forecast.weather.gov/showsigwx.php?warnzone=NYZ071&amp;warncounty=NYC119&amp;firewxzone=NYZ071&amp;local_place1=White+Plains+NY&amp;product1=Hazardous+Weather+Outlook</hazardTextURL>
+        </hazard>
+      </hazard-conditions>
+    </hazards>
+
+    <wordedForecast time-layout="k-p12h-n14-1" dataSource="okxNetcdf" wordGenerator="markMitchell">
+      <name>Text Forecast</name>
+        <text>A chance of showers, mainly after 5am.  Mostly cloudy, with a low around 72. Light southwest wind.  Chance of precipitation is 30%.</text>
+        <text>A chance of showers and thunderstorms, then showers likely and possibly a thunderstorm after 1pm. Some of the storms could produce heavy rainfall.  Mostly cloudy, with a high near 87. Light southwest wind becoming south 5 to 9 mph in the morning.  Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible. </text>
+        <text>Showers likely and possibly a thunderstorm before 10pm, then a chance of showers and thunderstorms, mainly between 10pm and 1am. Some of the storms could produce heavy rainfall.  Mostly cloudy, with a low around 71. West wind 3 to 8 mph.  Chance of precipitation is 60%. New rainfall amounts between a tenth and quarter of an inch, except higher amounts possible in thunderstorms. </text>
+        <text>Mostly sunny, with a high near 92. West wind 7 to 11 mph. </text>
+        <text>Partly cloudy, with a low around 71. West wind 3 to 8 mph. </text>
+        <text>Mostly sunny, with a high near 96.</text>
+        <text>Partly cloudy, with a low around 75.</text>
+        <text>A chance of showers and thunderstorms.  Mostly sunny, with a high near 94. Chance of precipitation is 30%.</text>
+        <text>A chance of showers and thunderstorms.  Mostly cloudy, with a low around 72. Chance of precipitation is 30%.</text>
+        <text>Mostly sunny, with a high near 87.</text>
+        <text>Mostly clear, with a low around 66.</text>
+        <text>Sunny, with a high near 85.</text>
+        <text>Mostly clear, with a low around 64.</text>
+        <text>Mostly sunny, with a high near 86.</text>
+    </wordedForecast>
+
+</parameters>
+</data>
+<data type="current observations">
+	<location>
+		<location-key>point1</location-key>
+		<point latitude="41.08" longitude="-73.72"/>
+		<area-description>White Plains, Westchester County Airport, NY</area-description>
+		<height datum="mean sea level" height-units="feet">400</height>
+	</location>
+	<moreWeatherInformation applicable-location="point1">http://www.nws.noaa.gov/data/obhistory/KHPN.html</moreWeatherInformation>	
+	<time-layout time-coordinate="local">	
+		<layout-key>k-p1h-n1-1</layout-key>
+		<start-valid-time period-name="current">2012-07-14T21:56:00-04:00</start-valid-time>	
+	</time-layout>
+	<parameters applicable-location="point1">
+	<temperature type="apparent" units="Fahrenheit" time-layout="k-p1h-n1-1">			
+		<value>76</value>		
+	</temperature>		
+	<temperature type="dew point" units="Fahrenheit" time-layout="k-p1h-n1-1">			
+		<value>60</value>		
+	</temperature>		
+	<humidity type="relative" time-layout="k-p1h-n1-1">			
+		<value>58</value>		
+	</humidity>		
+	<weather time-layout="k-p1h-n1-1">			
+		<name>Weather Type, Coverage, Intensity</name>			
+		<weather-conditions weather-summary="Fair"/>			
+		<weather-conditions>				
+			<value>					
+			<visibility units="statute miles">10.00</visibility>				
+			</value>			
+		</weather-conditions>		
+	</weather>		
+	<conditions-icon type="forecast-NWS" time-layout="k-p1h-n1-1">			
+		<name>Conditions Icon</name>			
+		<icon-link>http://forecast.weather.gov/images/wtf/medium/nsct.png</icon-link>		
+	</conditions-icon>		
+	<direction type="wind" units="degrees true" time-layout="k-p1h-n1-1">			
+		<value>0</value>		
+	</direction>		
+	<pressure type="barometer" units="inches of mercury" time-layout="k-p1h-n1-1">			
+		<value>30.15</value>		\
+	</pressure>		
+	<wind-speed type="gust" units="knots" time-layout="k-p1h-n1-1">			
+		<value>NA</value>		
+	</wind-speed>		
+	<wind-speed type="sustained" units="knots" time-layout="k-p1h-n1-1">			
+		<value>0</value>		
+	</wind-speed>	
+	</parameters>
+</data>
+</dwml>
