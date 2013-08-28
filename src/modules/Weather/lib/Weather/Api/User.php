@@ -32,12 +32,12 @@ class Weather_Api_User extends Zikula_AbstractApi
         $xmlstr = file_get_contents('/tmp/zone-ny.xml');
         $doc = new SimpleXMLElement($xmlstr);
         
-        $creationdate =  $doc->{head}->{product}->{'creation-date'};
+        $creationdate =  $doc->{'head'}->{'product'}->{'creation-date'};
         $date = strtotime($creationdate);
         $LastUpdated =  strftime('%l:%M%p %a %b %e', $date);
         // $LastUpdated =~ s/([AP]M)/\L$1/;
         
-        $dataroot = $doc->{data};
+        $dataroot = $doc->{'data'};
         
         // Determine index of 12 hour format
         $keynum = -1;
@@ -62,12 +62,12 @@ class Weather_Api_User extends Zikula_AbstractApi
         
         $forcasts = array();
         for ($i=0; $i<$NumEvents; $i++) {
-            $iconurl = $dataroot->{parameters}->{'conditions-icon'}->{'icon-link'}[$i];
+            $iconurl = $dataroot->{'parameters'}->{'conditions-icon'}->{'icon-link'}[$i];
             $f = array(
                 'iconurl' => preg_replace('/medium/', 'small', $iconurl),
                 'periodname' => $dataroot->{'time-layout'}[$keynum]->{'start-valid-time'}[$i]->attributes()->{'period-name'},
                 'conditions' => $dataroot->parameters->weather->{'weather-conditions'}[$i]->attributes()->{'weather-summary'},
-                'worded' => $dataroot->{parameters}->{'wordedForecast'}->{'text'}[$i],
+                'worded' => $dataroot->{'parameters'}->{'wordedForecast'}->{'text'}[$i],
             );
             $forcasts[] = $f;
         }
