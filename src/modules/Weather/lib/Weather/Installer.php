@@ -10,12 +10,27 @@
 
 class Weather_Installer extends Zikula_AbstractInstaller
 {
+    var $tables = array ('weather_noaazone',
+	'weather_noaazonedata',
+	'weather_forecast',
+	);
+
     public function install()
     {
         ModUtil::setVar('Weather', 'modulestylesheet', 'style.css');
         //ModUtil::setVar('Weather', 'adminEmail', '');
 
-        // if ( !DBUtil::createTable('weather') ) return false;
+        try {
+            DoctrineUtil::createTablesFromModels('Weather');
+        } catch (Doctrine_Exception $e) {
+            $message = $this->__f('An error was encountered while installing the %1$s module.', array($this->getName()));
+            if (System::isDevelopmentMode()) {
+                $message .= ' ' . $this->__f('The error occurred while creating the tables. The Doctrine Exception message was: %1$s', array($e->getMessage()));
+            }
+            $this->registerError($message);
+        }
+
+ 	
         return true;
     }
 
@@ -42,7 +57,17 @@ class Weather_Installer extends Zikula_AbstractInstaller
     public function uninstall()
     {
         ModUtil::delVar('weather');
-        if ( !DBUtil::dropTable('weather') ) return false;
+        foreach ($this->tables as $tableName) {
+            try {
+                DoctrineUtil::dropTable($tableName);
+            } catch (Doctrine_Exception $e) {
+                $message = $this->__f('A database error was encountered while uninstalling the %1$s module.', array($this->getName()));
+                if (System::isDevelopmentMode()) {
+                    $message .= ' ' . $this->__f('The error occurred while dropping the %1$s table. The Doctrine Exception message was: %2$s', array($tableName, $e->getMessage()));
+                }
+                $this->registerError($message);
+            }
+        }
         return true;
     }
 

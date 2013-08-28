@@ -1,8 +1,7 @@
 <?php
         $xmlstr = file_get_contents('./zone-ny.xml');
-        
         $doc = new SimpleXMLElement($xmlstr);
-        print_r($doc);
+print_r($doc);
         
 print $doc->head->product->attributes()->{'concise-name'} . "\n";
 print $doc->data->{'time-layout'}[1]->{'start-valid-time'}->attributes()->{'period-name'}
@@ -15,3 +14,4 @@ foreach ($timelayout->{'start-valid-time'} as $s) {
         $n =  $s->attributes()->{'period-name'};
         print "$n\n";
 }
+	
