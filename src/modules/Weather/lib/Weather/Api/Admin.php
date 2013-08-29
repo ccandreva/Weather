@@ -9,7 +9,7 @@
 */
 
 
-class Weather_Api_User extends Zikula_AbstractApi
+class Weather_Api_Admin extends Zikula_AbstractApi
 {
    /**
      * Get available menu links.
@@ -18,10 +18,12 @@ class Weather_Api_User extends Zikula_AbstractApi
      */
     public function getlinks($args)
     {
-        if (SecurityUtil::checkPermission('Weather::', '::', ACCESS_READ)) {
+        if (SecurityUtil::checkPermission('Weather::', '::', ACCESS_ADMIN)) {
             $links = array(
-              array('url' => ModUtil::url('Weather', 'user', 'main'),
+              array('url' => ModUtil::url('Weather', 'admin', 'main'),
                   text=>$this->__('Overview'), 'class' => 'z-icon-es-preview'),  
+              array('url' => ModUtil::url('Weather', 'admin', 'editNOAAZone'),
+                  text=>$this->__('Edit Zone'), 'class' => 'z-icon-es-edit'),  
             );
         }        
         return $links;
