@@ -1,5 +1,6 @@
 <?php
-        $xmlstr = file_get_contents('./zone-ny.xml');
+//        $xmlstr = file_get_contents('./zone-ny.xml');
+        $xmlstr = file_get_contents('http://forecast.weather.gov/MapClick.php?lat=41.02090&lon=-73.75740&FcstType=dwml');
         $doc = new SimpleXMLElement($xmlstr);
 print_r($doc);
         
