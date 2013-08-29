@@ -1,4 +1,4 @@
-x<?php
+<?php
 /**
  * Zikula Application Framework
  * @copyright  (c) Zikula Development Team
