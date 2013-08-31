@@ -6,7 +6,7 @@
 * @license See license.txt
 * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
 *}
-
+{zdebug}
 <h2>Weather</h2>
 <p>
     Creation Date: {$LastUpdated}

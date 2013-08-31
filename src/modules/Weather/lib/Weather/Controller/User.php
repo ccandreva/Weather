@@ -21,6 +21,9 @@ class Weather_Controller_User extends Zikula_AbstractController
         $weather=ModUtil::apiFunc('Weather', 'user', 'getWeather');
         $this->view->assign($weather);
         $this->view->assign('templatetitle', 'weather');
+	$zoneData = ModUtil::apiFunc('Weather', 'user', 'getNOAAZoneData',
+		array('id' => 1));
+	$this->view->assign($zoneData);
         return $this->view->fetch('User/main.tpl');
     }
 

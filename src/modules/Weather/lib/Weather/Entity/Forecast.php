@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 *
 * Annotations define the entity mappings to database.
 *
-* #ORM\Entity(repositoryClass="Weather_Entity_Repository_ForecastRepository")
+* @ORM\Entity(repositoryClass="Weather_Entity_Repository_ForecastRepository")
 * @ORM\Table(name="weather_forecast")
 */
 
@@ -34,7 +34,6 @@ class Weather_Entity_Forecast extends Zikula_EntityAccess
     /**
      * id field (record id)
      *
-     * @ORM\Zone
      * @ORM\Column(type="integer")
      */
     private $zone;
@@ -55,5 +54,52 @@ class Weather_Entity_Forecast extends Zikula_EntityAccess
     /**
      * Constructor
      */
+
+    /*	    
+    public function __construct()
+        {
+            $this->date = new DateTime();
+        }
+     */	
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    public function setZone($zone)
+    {
+        $this->zone = $zone;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
 
 }
