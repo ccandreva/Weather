@@ -48,7 +48,7 @@ class Weather_Entity_NOAAZoneData extends Zikula_EntityAccess
     /**
      * item Xmldata
      *
-     * @ORM\Column(length=100000)
+     * @ORM\Column(type="text", length=100000)
      */
     private $xmldata = '';
 

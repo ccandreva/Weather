@@ -47,7 +47,7 @@ class Weather_Entity_Forecast extends Zikula_EntityAccess
     /**
      * item data
      *
-     * @ORM\Column(length=100000)
+     * @ORM\Column(type="text", length=100000)
      */
     private $data = '';
 
