@@ -64,7 +64,7 @@ class Weather_Installer extends Zikula_AbstractInstaller
 	} catch (Doctrine_Exception $e) {
 	    $message = $this->__f('A database error was encountered while uninstalling the %1$s module.', array($this->getName()));
 	    if (System::isDevelopmentMode()) {
-		$message .= ' ' . $this->__f('The error occurred while dropping the %1$s table. The Doctrine Exception message was: %2$s', array($tableName, $e->getMessage()));
+		$message .= ' ' . $this->__f('The error occurred while dropping the %1$s table. The Doctrine Exception message was: %2$s', array($e->getMessage()));
 	    }
 	    $this->registerError($message);
 	}
