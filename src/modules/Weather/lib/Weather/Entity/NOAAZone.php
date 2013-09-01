@@ -15,7 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
 *
 * Annotations define the entity mappings to database.
 *
-* @ORM\Entity(repositoryClass="Weather_Entity_Repository_NOAAZoneRepository")
+* @ORM\Entity
+ * #(repositoryClass="Weather_Entity_Repository_NOAAZoneRepository")
 * @ORM\Table(name="weather_noaazone")
 */
 

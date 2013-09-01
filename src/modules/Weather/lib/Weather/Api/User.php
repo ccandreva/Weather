@@ -29,7 +29,9 @@ class Weather_Api_User extends Zikula_AbstractApi
     
     public function getWeather($args)
     {
-        $xmlstr = file_get_contents('/tmp/zone-ny.xml');
+        // $xmlstr = file_get_contents('/tmp/zone-ny.xml');
+	$zoneData = $this->getNOAAZoneData(array('id' => 1));
+	$xmlstr = $zoneData->getXmldata();
         $doc = new SimpleXMLElement($xmlstr);
         
         $creationdate =  $doc->{'head'}->{'product'}->{'creation-date'};
@@ -62,12 +64,18 @@ class Weather_Api_User extends Zikula_AbstractApi
         
         $forcasts = array();
         for ($i=0; $i<$NumEvents; $i++) {
-            $iconurl = $dataroot->{'parameters'}->{'conditions-icon'}->{'icon-link'}[$i];
+            $iconurl = $dataroot->{'parameters'}
+		    ->{'conditions-icon'}->{'icon-link'}[$i];
             $f = array(
                 'iconurl' => preg_replace('/medium/', 'small', $iconurl),
-                'periodname' => $dataroot->{'time-layout'}[$keynum]->{'start-valid-time'}[$i]->attributes()->{'period-name'},
-                'conditions' => $dataroot->parameters->weather->{'weather-conditions'}[$i]->attributes()->{'weather-summary'},
-                'worded' => $dataroot->{'parameters'}->{'wordedForecast'}->{'text'}[$i],
+                'periodname' => $dataroot->{'time-layout'}[$keynum]
+			->{'start-valid-time'}[$i]
+			->attributes()->{'period-name'},
+                'conditions' => $dataroot->parameters->weather
+			->{'weather-conditions'}[$i]
+			->attributes()->{'weather-summary'},
+                'worded' => $dataroot->{'parameters'}
+			->{'wordedForecast'}->{'text'}[$i],
             );
             $forcasts[] = $f;
         }
@@ -77,55 +85,46 @@ class Weather_Api_User extends Zikula_AbstractApi
             );
     }
 
+    public function getNOAAZones($args)
+    {
+    	$zonesObj = $this->entityManager
+		->getRepository('Weather_Entity_NOAAZone')->findBy();
+	return ($zonesObj);
+    }
+    
     public function getNOAAZoneData($args)
     {	
 	$id = $args['id'];
 	if (!is_numeric($id)) {
 	    return false;
 	}
-	$tableObj = Doctrine_core::getTable('Weather_Model_NOAAZoneData');
-	$q = Doctrine_Query::create()
-		->select('data.*')
-		->from('Weather_Model_NOAAZoneData as data')
-		->where('data.expires>NOW()');
-	$zoneData = $q->fetchArray();
-
-	if (isset($zoneData['expires'])) {
-	    $zoneData['source'] = 'database';
-	    return $zoneData;
+    	$zoneData = $this->entityManager
+		->find('Weather_Entity_NOAAZoneData', $id);
+	if ($zoneData) {
+	    $expires = $zoneData->getExpires();
+	    if ($expires > new DateTime) {
+		return $zoneData;
+	    }
+	} else {
+	    $zoneData = new Weather_Entity_NOAAZoneData();
+	    $zoneData->setId($id);
+	    $zoneData->setZone($id);
 	}
 
-	// Download the xml file, save to database, return the data.
-	$xmlstr = file_get_contents('http://forecast.weather.gov/MapClick.php?lat=41.02090&lon=-73.75740&FcstType=dwml');
-        $doc = new SimpleXMLElement($xmlstr);
+	// If we are past the expiration date, redownload the data */
+    	$zone = $this->entityManager->find('Weather_Entity_NOAAZone', $id);
+	$xmlstr = file_get_contents($zone->getUrl());
+	$zoneData->setXmldata($xmlstr);
+	
+	$doc = new SimpleXMLElement($xmlstr);
 	$creationdate =  $doc->{'head'}->{'product'}->{'creation-date'};
 	$period = $creationdate->attributes()->{'refresh-frequency'};
-	preg_match('/%\w*(\d+)(\w+)$/', $period, $m);
-	$n = $m[1];
-	$p = $m[2];
-	switch ($p) {
-	    case 'H': case 'h':
-		$p = 'hour';
-		break;
-	    case 'M': case 'm':
-		$p = 'minute';
-		break;
-	    case 'S': case 's':
-		$p = 'second';
-		break;
-	}
-	$period = '+' . $n . ' ' . $p;
-	$expires = strftime('%F %T',strtotime($period, strtotime($creationdate)));
-	$zoneData = array(
-	    'id' => $id,
-	    'zone' => $id,
-	    'expires' => $expires,
-	    'xmldata' => $xmlstr,
-	    'source' => 'Download',
-	);
+        $expires = new DateTime($creationdate);
+        $expires->add(new DateInterval($period));
 	
-	$zoneObj->fromArray($formData);
-	$zoneObj->save();
+	$zoneData->setExpires($expires);
+	$this->entityManager->persist($zoneData);
+	$this->entityManager->flush();
 
 	return $zoneData;
 	

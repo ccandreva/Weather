@@ -24,11 +24,10 @@ class Weather_Form_Handler_EditNOAAZone extends Zikula_Form_AbstractHandler
     public function initialize(Zikula_Form_View $view)
     {
 	// edit a Zone or create one
-	$tableObj = Doctrine_core::getTable('Weather_Model_NOAAZone');
 	if ($this->id){
-	    $zoneObj = $tableObj->find($this->id);
+	    $zoneObj = $this->entityManager->getRepository('Weather_Entity_NOAAZone')->find($id);
 	} else {
-	    $zoneObj = new Weather_Model_NOAAZone();
+	    $zoneObj = new Weather_Entity_NOAAZone();
 	}
 	$this->view->assign($zoneObj->toArray());
 	$this->zoneObj = $zoneObj;
@@ -48,8 +47,9 @@ class Weather_Form_Handler_EditNOAAZone extends Zikula_Form_AbstractHandler
 	if (!$this->view->isValid()) return false;
 
 	$zoneObj = $this->zoneObj;
-	$zoneObj->fromArray($formData);
-	$zoneObj->save();
+	$zoneObj->merge($formData);
+	$this->entityManager->persist($zoneObj);
+	$this->entityManager->flush();
 	
     return $this->view->redirect (ModUtil::url('Weather', 'admin','main'));
     }
