@@ -18,13 +18,8 @@ class Weather_Controller_Admin extends Zikula_AbstractController
             return LogUtil::registerPermissionError();
         }
 
-	$tableObj = Doctrine_core::getTable('Weather_Model_NOAAZone');
-	$q = Doctrine_Query::create()
-		->select('NOAAZone.*')
-		->from('Weather_Model_NOAAZone as NOAAZone');
-	$zones = $q->fetchArray();
-	$this->view->assign('zones', $zones);
-	
+	$zonesObj = ModUtil::apiFunc('Weather', 'user', 'getNOAAZones');
+	$this->view->assign('zones', $zonesObj);
         $this->view->assign('templatetitle', 'Weather');
         return $this->view->fetch('Admin/main.tpl');
     }
